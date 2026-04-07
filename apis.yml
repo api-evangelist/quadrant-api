@@ -1,8 +1,7 @@
 aid: quadrant-api
 name: Quadrant API
 description: >-
-  The Quadrant API currently allows users to retrieve alert data by their client
-  ID. 
+  The Quadrant API currently allows users to retrieve alert data by their client ID.
 type: Index
 position: Consumer
 access: 3rd-Party
@@ -18,8 +17,8 @@ apis:
   - aid: quadrant-api:quadrant-api
     name: Quadrant API
     description: >-
-      The Quadrant API currently allows users to retrieve alert data by their
-      client ID. 
+      The Quadrant API currently allows users to retrieve alert data by their client
+      ID.
     humanURL: ' https://api.qis.io/redoc'
     tags:
       - API
