@@ -1,0 +1,106 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Quadrant API — v2 alerts
+  description: 'Quadrant API — v2 alerts. 1 operations. Lead operation: Get Alerts. Self-contained Naftiko capability covering
+    one Quadrant Api business surface.'
+  tags:
+  - Quadrant Api
+  - v2 alerts
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    QUADRANT_API_API_KEY: QUADRANT_API_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: quadrant-v2-alerts
+    baseUri: ''
+    description: Quadrant API — v2 alerts business capability. Self-contained, no shared references.
+    resources:
+    - name: v2-alerts-client_id
+      path: /v2/alerts/{client_id}/
+      operations:
+      - name: getalertsv2alertsclientidget
+        method: GET
+        description: Get Alerts
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: client_id
+          in: path
+          type: string
+          required: true
+        - name: category
+          in: query
+          type: string
+        - name: size
+          in: query
+          type: integer
+        - name: sort
+          in: query
+          type: string
+        - name: stream
+          in: query
+          type: boolean
+        - name: next_page_token
+          in: query
+          type: string
+    authentication:
+      type: apikey
+      key: API-Key
+      value: '{{env.QUADRANT_API_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: quadrant-v2-alerts-rest
+    port: 8080
+    description: REST adapter for Quadrant API — v2 alerts. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/v2/alerts/{client-id}
+      name: v2-alerts-client-id
+      description: REST surface for v2-alerts-client_id.
+      operations:
+      - method: GET
+        name: getalertsv2alertsclientidget
+        description: Get Alerts
+        call: quadrant-v2-alerts.getalertsv2alertsclientidget
+        with:
+          client_id: rest.client_id
+          category: rest.category
+          size: rest.size
+          sort: rest.sort
+          stream: rest.stream
+          next_page_token: rest.next_page_token
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: quadrant-v2-alerts-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Quadrant API — v2 alerts. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: get-alerts
+      description: Get Alerts
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: quadrant-v2-alerts.getalertsv2alertsclientidget
+      with:
+        client_id: tools.client_id
+        category: tools.category
+        size: tools.size
+        sort: tools.sort
+        stream: tools.stream
+        next_page_token: tools.next_page_token
+      outputParameters:
+      - type: object
+        mapping: $.
