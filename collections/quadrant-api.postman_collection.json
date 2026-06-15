@@ -1,0 +1,267 @@
+{
+  "item": [
+    {
+      "id": "083dd55a-9fb5-4977-b4c8-04bd199245c4",
+      "name": "v2 alerts",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "59c79d18-35e7-479e-872d-d582fc6f4f53",
+          "name": "Get Alerts",
+          "request": {
+            "name": "Get Alerts",
+            "description": {},
+            "url": {
+              "path": [
+                "v2",
+                "alerts",
+                ":client_id",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "category",
+                  "value": "escalated"
+                },
+                {
+                  "disabled": false,
+                  "key": "size",
+                  "value": "10000"
+                },
+                {
+                  "disabled": false,
+                  "key": "sort",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "stream",
+                  "value": "false"
+                },
+                {
+                  "disabled": false,
+                  "key": "next_page_token",
+                  "value": "<string>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "client_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "API-Key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "e32afbb8-6581-4c44-a208-5ff54d944598",
+              "name": "Successful Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "alerts",
+                    ":client_id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "category",
+                      "value": "escalated"
+                    },
+                    {
+                      "key": "size",
+                      "value": "10000"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "stream",
+                      "value": "false"
+                    },
+                    {
+                      "key": "next_page_token",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "client_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"total\": 2618,\n  \"page\": {\n    \"size\": 8263,\n    \"number\": 6619\n  },\n  \"next\": {\n    \"url\": \"string\",\n    \"expires_at\": 8993\n  },\n  \"category\": \"investigated\",\n  \"filter\": {\n    \"terms\": [\n      {\n        \"key_0\": 883\n      },\n      {\n        \"key_0\": \"string\",\n        \"key_1\": 3956.20767740976\n      }\n    ],\n    \"ranges\": [\n      {\n        \"key_0\": {\n          \"key_0\": \"1954-05-22T18:02:10.941Z\",\n          \"key_1\": \"1989-03-14T00:36:25.891Z\",\n          \"key_2\": \"1950-10-11T12:04:11.735Z\"\n        },\n        \"key_1\": {\n          \"key_0\": \"1951-01-12T01:52:12.093Z\"\n        },\n        \"key_2\": {\n          \"key_0\": \"1998-04-28T14:08:09.827Z\",\n          \"key_1\": \"1951-01-09T18:40:21.305Z\"\n        }\n      },\n      {\n        \"key_0\": {\n          \"key_0\": \"1993-03-21T11:52:12.894Z\",\n          \"key_1\": \"2003-12-12T06:23:25.787Z\"\n        }\n      }\n    ]\n  },\n  \"sort\": [\n    {\n      \"key_0\": \"desc\",\n      \"key_1\": \"desc\",\n      \"key_2\": \"asc\",\n      \"key_3\": \"desc\",\n      \"key_4\": \"asc\"\n    },\n    {\n      \"key_0\": \"asc\",\n      \"key_1\": \"asc\"\n    }\n  ],\n  \"alerts\": [\n    {\n      \"alert\": {\n        \"action\": \"string\",\n        \"category\": \"string\",\n        \"gid\": 5206,\n        \"metadata\": {\n          \"key_0\": 3521.5137826484156,\n          \"key_1\": false,\n          \"key_2\": 6697\n        },\n        \"rev\": \"string\",\n        \"rule\": \"string\",\n        \"severity\": 341,\n        \"signature\": \"string\",\n        \"signature_id\": \"string\"\n      },\n      \"analyst\": [\n        {\n          \"critical\": \"string\",\n          \"long_description\": \"string\",\n          \"name\": \"string\",\n          \"priority\": 3370,\n          \"short_description\": \"string\",\n          \"short_description_id\": 1567,\n          \"timestamp\": \"1962-05-30T18:00:11.243Z\"\n        },\n        {\n          \"critical\": \"string\",\n          \"long_description\": \"string\",\n          \"name\": \"string\",\n          \"priority\": 9028,\n          \"short_description\": \"string\",\n          \"short_description_id\": 573,\n          \"timestamp\": \"2012-02-07T15:52:45.558Z\"\n        }\n      ],\n      \"analyst_final_response\": {\n        \"critical\": \"string\",\n        \"long_description\": \"string\",\n        \"name\": \"string\",\n        \"priority\": 6362,\n        \"short_description\": \"string\",\n        \"short_description_id\": 3850,\n        \"timestamp\": \"1972-09-04T10:38:57.141Z\"\n      },\n      \"auto_answer\": \"string\",\n      \"auto_answer_id\": \"string\",\n      \"auto_emailed\": \"string\",\n      \"bluedot\": {\n        \"src\": {\n          \"api_user\": \"string\",\n          \"category\": \"string\",\n          \"code\": 5993,\n          \"comments\": \"string\",\n          \"counter\": 4823,\n          \"ctime\": \"2003-10-10T03:39:34.812Z\",\n          \"ctime_epoch\": 933,\n          \"last_seen\": \"1999-11-03T10:54:50.699Z\",\n          \"mtime\": \"1976-07-18T17:36:25.288Z\",\n          \"mtime_epoch\": 9448,\n          \"query\": \"string\",\n          \"query_counter\": 3331,\n          \"query_timestamp\": \"1983-02-14T13:35:08.526Z\",\n          \"query_type\": \"string\",\n          \"source\": \"string\"\n        }\n      },\n      \"critical\": \"string\",\n      \"cust_id\": \"string\",\n      \"dest_dns\": \"string\",\n      \"dest_ip\": \"string\",\n      \"dest_port\": \"string\",\n      \"emailed\": \"string\",\n      \"es_index\": \"string\",\n      \"event_type\": \"string\",\n      \"flow_id\": \"string\",\n      \"geoip\": {\n        \"dest\": {\n          \"city\": \"string\",\n          \"country\": \"string\",\n          \"latitude\": 35.22918734696678,\n          \"longitude\": 6382.9854605910405,\n          \"postal\": \"string\",\n          \"subdivision\": \"string\",\n          \"timezone\": \"string\"\n        },\n        \"src\": {\n          \"city\": \"string\",\n          \"country\": \"string\",\n          \"latitude\": 2948.861289506712,\n          \"longitude\": 5484.228210900644,\n          \"postal\": \"string\",\n          \"subdivision\": \"string\",\n          \"timezone\": \"string\"\n        }\n      },\n      \"geoip_dest\": {\n        \"city\": \"string\",\n        \"country\": \"string\",\n        \"latitude\": 9857.301218336655,\n        \"longitude\": 2563.3922899562667,\n        \"postal\": \"string\",\n        \"subdivision\": \"string\",\n        \"timezone\": \"string\"\n      },\n      \"geoip_src\": {\n        \"city\": \"string\",\n        \"country\": \"string\",\n        \"latitude\": 578.5104825391941,\n        \"longitude\": 2150.276250571418,\n        \"postal\": \"string\",\n        \"subdivision\": \"string\",\n        \"timezone\": \"string\"\n      },\n      \"host\": \"string\",\n      \"in_iface\": \"string\",\n      \"proto\": \"string\",\n      \"sensor_description\": \"string\",\n      \"snort_cid\": \"string\",\n      \"snort_id\": \"string\",\n      \"snort_sid\": \"string\",\n      \"src_dns\": \"string\",\n      \"src_ip\": \"string\",\n      \"src_port\": \"string\",\n      \"timestamp\": \"1951-12-12T08:32:00.535Z\",\n      \"facility\": \"string\",\n      \"level\": \"string\",\n      \"normalize\": {\n        \"src-ip\": \"string\",\n        \"src-port\": \"string\",\n        \"username\": \"string\"\n      },\n      \"payload\": \"string\",\n      \"priority\": \"string\",\n      \"program\": \"string\",\n      \"stream\": \"string\",\n      \"tag\": \"string\",\n      \"xff\": \"string\",\n      \"sensor_type\": \"lae\"\n    },\n    {\n      \"alert\": {\n        \"action\": \"string\",\n        \"category\": \"string\",\n        \"gid\": 3912,\n        \"metadata\": {\n          \"key_0\": true,\n          \"key_1\": 2925.991515399592,\n          \"key_2\": 5881\n        },\n        \"rev\": \"string\",\n        \"rule\": \"string\",\n        \"severity\": 4603,\n        \"signature\": \"string\",\n        \"signature_id\": \"string\"\n      },\n      \"analyst\": [\n        {\n          \"critical\": \"string\",\n          \"long_description\": \"string\",\n          \"name\": \"string\",\n          \"priority\": 2410,\n          \"short_description\": \"string\",\n          \"short_description_id\": 2482,\n          \"timestamp\": \"1956-04-21T18:43:03.590Z\"\n        },\n        {\n          \"critical\": \"string\",\n          \"long_description\": \"string\",\n          \"name\": \"string\",\n          \"priority\": 4734,\n          \"short_description\": \"string\",\n          \"short_description_id\": 4744,\n          \"timestamp\": \"1986-05-12T08:22:22.412Z\"\n        }\n      ],\n      \"analyst_final_response\": {\n        \"critical\": \"string\",\n        \"long_description\": \"string\",\n        \"name\": \"string\",\n        \"priority\": 1265,\n        \"short_description\": \"string\",\n        \"short_description_id\": 1645,\n        \"timestamp\": \"2003-08-05T18:40:20.057Z\"\n      },\n      \"auto_answer\": \"string\",\n      \"auto_answer_id\": \"string\",\n      \"auto_emailed\": \"string\",\n      \"bluedot\": {\n        \"src\": {\n          \"api_user\": \"string\",\n          \"category\": \"string\",\n          \"code\": 2697,\n          \"comments\": \"string\",\n          \"counter\": 5305,\n          \"ctime\": \"1975-12-08T08:50:25.411Z\",\n          \"ctime_epoch\": 3137,\n          \"last_seen\": \"2020-07-06T07:22:37.342Z\",\n          \"mtime\": \"1987-05-07T06:13:20.509Z\",\n          \"mtime_epoch\": 6859,\n          \"query\": \"string\",\n          \"query_counter\": 4131,\n          \"query_timestamp\": \"1964-10-23T00:16:45.372Z\",\n          \"query_type\": \"string\",\n          \"source\": \"string\"\n        }\n      },\n      \"critical\": \"string\",\n      \"cust_id\": \"string\",\n      \"dest_dns\": \"string\",\n      \"dest_ip\": \"string\",\n      \"dest_port\": \"string\",\n      \"emailed\": \"string\",\n      \"es_index\": \"string\",\n      \"event_type\": \"string\",\n      \"flow_id\": \"string\",\n      \"geoip\": {\n        \"dest\": {\n          \"city\": \"string\",\n          \"country\": \"string\",\n          \"latitude\": 8942.669532875092,\n          \"longitude\": 1520.4251511487664,\n          \"postal\": \"string\",\n          \"subdivision\": \"string\",\n          \"timezone\": \"string\"\n        },\n        \"src\": {\n          \"city\": \"string\",\n          \"country\": \"string\",\n          \"latitude\": 8947.703382040245,\n          \"longitude\": 1883.5954239375396,\n          \"postal\": \"string\",\n          \"subdivision\": \"string\",\n          \"timezone\": \"string\"\n        }\n      },\n      \"geoip_dest\": {\n        \"city\": \"string\",\n        \"country\": \"string\",\n        \"latitude\": 2277.5818698632656,\n        \"longitude\": 2344.7597374467523,\n        \"postal\": \"string\",\n        \"subdivision\": \"string\",\n        \"timezone\": \"string\"\n      },\n      \"geoip_src\": {\n        \"city\": \"string\",\n        \"country\": \"string\",\n        \"latitude\": 7195.579078919757,\n        \"longitude\": 330.77945282049103,\n        \"postal\": \"string\",\n        \"subdivision\": \"string\",\n        \"timezone\": \"string\"\n      },\n      \"host\": \"string\",\n      \"in_iface\": \"string\",\n      \"proto\": \"string\",\n      \"sensor_description\": \"string\",\n      \"snort_cid\": \"string\",\n      \"snort_id\": \"string\",\n      \"snort_sid\": \"string\",\n      \"src_dns\": \"string\",\n      \"src_ip\": \"string\",\n      \"src_port\": \"string\",\n      \"timestamp\": \"1968-06-09T03:36:33.347Z\",\n      \"facility\": \"string\",\n      \"level\": \"string\",\n      \"normalize\": {\n        \"src-ip\": \"string\",\n        \"src-port\": \"string\",\n        \"username\": \"string\"\n      },\n      \"payload\": \"string\",\n      \"priority\": \"string\",\n      \"program\": \"string\",\n      \"stream\": \"string\",\n      \"tag\": \"string\",\n      \"xff\": \"string\",\n      \"sensor_type\": \"lae\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "76cf8e04-0f96-4538-8708-f7c7199c20b8",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "alerts",
+                    ":client_id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "category",
+                      "value": "escalated"
+                    },
+                    {
+                      "key": "size",
+                      "value": "10000"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "stream",
+                      "value": "false"
+                    },
+                    {
+                      "key": "next_page_token",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "client_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "e0943953-1448-43b4-be1b-f44517335811",
+    "name": "Quadrant API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Quadrant API currently allows users to retrieve alert data by their client ID.\n\n## Sign-up and credentials \n\nTo start using the Quadrant API, sign into your customer console, navigate to the Quadrant API page in company settings, and generate your API credentials.\nYou will retrieve a client ID and API key. You may regenerate the API key at any time.\n\n## Root domain:\n\nThe root domain is api.qis.io.\n\n## Authentication:\n\nAn API-Key header must be included on requests to all API endpoints. \n`API-Key: {api_key}`\n\nOtherwise, the user will receive a 401 response, which indicates that they need to provide credentials.\n\n## Alerts API\n\n### Endpoints\n\n- `GET /v2/alerts/{client_id}`\n\n### Alert Category\n\nAlerts may be retrieved according to one of the following categories. To specify a category, provide the \"category\" query parameter. The default category is \"escalated.\"\n\n**Example:** `GET /v2/alerts/{client_id}?category=critical`  \nwill request all critical alerts\n\n#### Descriptions\n- **reportable:** all alerts triggered for a customer\n- **benign:** all auto-answered alerts (note: these may include some escalated alerts)\n- **investigated:** alerts investigated by our soc\n- **resolved:** alerts resolved by our soc and not escalated to the customer\n- **escalated:** alerts emailed to the customer\n- **noncritical:** alerts emailed to the customer that are noncritical\n- **critical:** alerts emailed to the customer that are critical\n\n### Filtering\n\nAlerts may be filtered by providing a query parameter corresponding to a field in the alert body. Each parameter may be suffixed with `__lt`, `__gt`, `__lte`, and `__gte` to compare the field value with a date, number, or string.  \n  \n**Example:** `GET /v2/alerts/{client_id}?timestamp__gte=2022-01-01T00:00:00&timestamp__lt=2023-01-01T00:00:00`  \nrequests all escalated alerts for 2022\n\n**Example:** `GET /v2/alerts/{client_id}?analyst_final_response.name=John+Smith`  \nrequests all escalated alerts investigated by John Smith\n\n**Example:** `GET /v2/alerts/{client_id}?alert.category=Attempted+User+Privilege+Gain`  \nrequests all escalated alerts categorized as \"Attempted User Privilege Gain\"  \n\n### Sorting\n\nAn optional sort definition may be provided by using the \"sort\" query parameter. It should be formatted as a comma-separated sequence of \\<field\\>:\\<direction\\> pairs. The direction should be \"asc\" or \"desc\".  \n  \nIf not part of the sort definition, results will be additionally ordered by timestamp and snort id. This is necessary for pagination and to prevent missing or duplicate records across pages or in stream.  \n  \n**Example:** `GET /v2/alerts/{client_id}?sort=timestamp:desc`  \nrequests all escalated alerts in reverse chronological order  \n  \n**Example:** `GET /v2/alerts/{client_id}?sort=alert.category:asc`  \nrequests all escalated alerts ordered alphabetically by alert category  \n\n### Pagination\n\nData is delivered in pages by default. Each page contains a `next` section with a URL that points to the next page. If there are no further pages, `url` will be `null`.  \nPage size defaults to 10,000. This is also the maximum page size.  \nTo specify a smaller size, provide the \"size\" query parameter.  \n  \n**Example**: `GET /v2/alerts/{client_id}?size=1000`  \nreturns the first 1000 of all escalated alerts\n  \n**Example Implementation:** &nbsp;&nbsp;&nbsp; <span style=\"background:Black; color:LightGreen; border:4px solid black;\">&nbsp;Python&nbsp;</span>\n\n\turl = f'https://api.qis.io/v2/alerts/{CLIENT_ID}?category=reportable'\n\tauth_header = {'API-Key': API_KEY}\n\ts = requests.Session()\n\twhile url:\n\t\tresp = s.get(url, headers=auth_header)\n\t\tif resp.status_code != 200:\n\t\t\tbreak\n\t\tdata = resp.json()\n\t\tfor alert in data['alerts']:\n\t\t\t# do something with alert\n\t\t\tpass\n\t\turl = data['next']['url']\n\nwill process all alerts in pages of 10000, executing a per-alert action!  \n\n### Streaming\n\nTo request data as a stream response, set the \"stream\" query parameter to true. Each alert in the stream is delimited by a newline.  \n  \n**Example**: `GET /v2/alerts/{client_id}?stream=true`  \nrequests a stream of all escalated alerts\n  \n**Example Implementation:** &nbsp;&nbsp;&nbsp; <span style=\"background:Black; color:LightGreen; border:4px solid black;\">&nbsp;Python&nbsp;</span>\n\n\turl = f'https://api.qis.io/v2/alerts/{CLIENT_ID}?category=reportable&stream=true'\n\tauth_header = {'API-Key': API_KEY}\n\tresp = requests.get(url, headers=auth_header, stream=True)\n\tfor alert in resp.iter_lines(chunk_size=2**16):\n\t\t# do something with alert\n\t\tpass\n\nwill process a stream of all alerts, executing a per-alert action!\n\n\nContact Support:\n Name: Quadrant Information Security\n Email: soc@quadrantsec.com",
+      "type": "text/plain"
+    }
+  }
+}

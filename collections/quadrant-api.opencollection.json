@@ -1,0 +1,67 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Quadrant API",
+    "version": "2.0.3"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "v2 alerts",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Alerts",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v2/alerts/:client_id/",
+            "params": [
+              {
+                "name": "client_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "category",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "size",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "stream",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "next_page_token",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "API-Key",
+              "value": "{{API-Key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Get Alerts"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
