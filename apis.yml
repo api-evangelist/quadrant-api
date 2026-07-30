@@ -2,9 +2,22 @@ aid: quadrant-api
 name: Quadrant API
 description: The Quadrant API currently allows users to retrieve alert data by their client ID.
 type: Index
+accessModel:
+  pricing: freemium
+  onboarding: self-serve
+  trial: false
+  try_now: true
+  public: false
+  label: Freemium · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
 position: Consumer
 access: 3rd-Party
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/quadrant-api.png
 tags:
   - Alerts
   - Security
@@ -23,20 +36,18 @@ common:
   - type: LinkedIn
     url: https://www.linkedin.com/company/quadrantprotocol
 apis:
-  - aid: quadrant-api:quadrant-api
-    name: Quadrant API
-    description: The Quadrant API currently allows users to retrieve alert data by their client ID.
-    humanURL: https://api.qis.io/redoc
-    baseURL: https://api.qis.io
-    tags:
-      - Alerts
-      - Security
-      - Threat Intelligence
-    properties:
-      - type: Documentation
-        url: https://api.qis.io/redoc
-      - type: OpenAPI
-        url: https://raw.githubusercontent.com/api-evangelist/quadrant-api/main/openapi/quadrant-api-openapi.json
+- aid: quadrant-api:quadrant-api-v2-alerts-api
+  name: Quadrant API v2 alerts API
+  description: The v2 alerts API from Quadrant API — 1 operation(s) for v2 alerts.
+  humanURL: https://api.qis.io/redoc
+  baseURL: https://api.qis.io
+  tags:
+  - v2 alerts
+  properties:
+  - type: OpenAPI
+    url: openapi/quadrant-api-v2-alerts-api-openapi.yml
+  - type: Documentation
+    url: https://api.qis.io/redoc
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
