@@ -1,0 +1,14 @@
+{
+  "provider": "quadrant-api",
+  "sources": [
+    "quadrant-api-v2-alerts-api-openapi.yml"
+  ],
+  "outputs": [
+    "quadrant-api-v2-alerts-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
