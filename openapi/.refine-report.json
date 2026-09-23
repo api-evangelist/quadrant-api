@@ -1,7 +1,7 @@
 {
   "provider": "quadrant-api",
   "sources": [
-    "quadrant-api-v2-alerts-api-openapi.yml"
+    "_original/quadrant-api-openapi.json"
   ],
   "outputs": [
     "quadrant-api-v2-alerts-api-openapi.yml"
@@ -9,6 +9,13 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "quadrant-api-openapi.json: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "quadrant-api-openapi.json: declared missing tag: v2 alerts",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "quadrant-api-v2-alerts-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }
