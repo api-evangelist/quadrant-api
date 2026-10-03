@@ -79,121 +79,40 @@ paths:
                 $ref: '#/components/schemas/HTTPValidationError'
 components:
   schemas:
-    ValidationError:
+    AnalystResponse:
       properties:
-        loc:
-          items:
-            anyOf:
-            - type: string
-            - type: integer
-          type: array
-          title: Location
-        msg:
+        critical:
           type: string
-          title: Message
-        type:
+          title: Critical
+        long_description:
           type: string
-          title: Error Type
-      type: object
-      required:
-      - loc
-      - msg
-      - type
-      title: ValidationError
-    CurrentPageInfo:
-      properties:
-        size:
+          title: Long Description
+        name:
+          type: string
+          title: Name
+        priority:
           type: integer
-          title: Size
-        number:
+          title: Priority
+        short_description:
+          type: string
+          title: Short Description
+        short_description_id:
           type: integer
-          title: Number
+          title: Short Description Id
+        timestamp:
+          type: string
+          format: date-time
+          title: Timestamp
       type: object
       required:
-      - size
-      - number
-      title: CurrentPageInfo
-    GeoIPInfo:
-      properties:
-        dest:
-          $ref: '#/components/schemas/GeoIPLocation'
-        src:
-          $ref: '#/components/schemas/GeoIPLocation'
-      type: object
-      required:
-      - dest
-      - src
-      title: GeoIPInfo
-    AlertResponse:
-      properties:
-        total:
-          type: integer
-          title: Total
-        page:
-          $ref: '#/components/schemas/CurrentPageInfo'
-        next:
-          $ref: '#/components/schemas/NextPageInfo'
-        category:
-          $ref: '#/components/schemas/AlertCategory'
-        filter:
-          $ref: '#/components/schemas/HitFilter'
-        sort:
-          items:
-            additionalProperties:
-              $ref: '#/components/schemas/SortDirection'
-            type: object
-          type: array
-          title: Sort
-        alerts:
-          items:
-            anyOf:
-            - $ref: '#/components/schemas/SaganAlert'
-            - $ref: '#/components/schemas/SuricataAlert'
-          type: array
-          title: Alerts
-      type: object
-      required:
-      - total
-      - page
-      - next
-      - category
-      - filter
-      - sort
-      - alerts
-      title: AlertResponse
-    GeoIPLocation:
-      properties:
-        city:
-          type: string
-          title: City
-        country:
-          type: string
-          title: Country
-        latitude:
-          type: number
-          title: Latitude
-        longitude:
-          type: number
-          title: Longitude
-        postal:
-          type: string
-          title: Postal
-        subdivision:
-          type: string
-          title: Subdivision
-        timezone:
-          type: string
-          title: Timezone
-      type: object
-      required:
-      - city
-      - country
-      - latitude
-      - longitude
-      - postal
-      - subdivision
-      - timezone
-      title: GeoIPLocation
+      - critical
+      - long_description
+      - name
+      - priority
+      - short_description
+      - short_description_id
+      - timestamp
+      title: AnalystResponse
     NextPageInfo:
       properties:
         url:
@@ -211,17 +130,17 @@ components:
       - url
       - expires_at
       title: NextPageInfo
-    AlertCategory:
-      type: string
-      enum:
-      - reportable
-      - benign
-      - investigated
-      - resolved
-      - escalated
-      - noncritical
-      - critical
-      title: AlertCategory
+    GeoIPInfo:
+      properties:
+        dest:
+          $ref: '#/components/schemas/GeoIPLocation'
+        src:
+          $ref: '#/components/schemas/GeoIPLocation'
+      type: object
+      required:
+      - dest
+      - src
+      title: GeoIPInfo
     HitFilter:
       properties:
         terms:
@@ -319,15 +238,6 @@ components:
       - query_type
       - source
       title: BluedotSrc
-    PacketInfo:
-      properties:
-        linktype:
-          type: integer
-          title: Linktype
-      type: object
-      required:
-      - linktype
-      title: PacketInfo
     NormalizationInfo:
       properties:
         src-ip:
@@ -345,12 +255,6 @@ components:
       - src-port
       - username
       title: NormalizationInfo
-    SortDirection:
-      type: string
-      enum:
-      - asc
-      - desc
-      title: SortDirection
     SaganAlert:
       properties:
         alert:
@@ -512,48 +416,6 @@ components:
       - tag
       - xff
       title: SaganAlert
-    RangeQueryOperator:
-      type: string
-      enum:
-      - lt
-      - gt
-      - lte
-      - gte
-      title: RangeQueryOperator
-    AnalystResponse:
-      properties:
-        critical:
-          type: string
-          title: Critical
-        long_description:
-          type: string
-          title: Long Description
-        name:
-          type: string
-          title: Name
-        priority:
-          type: integer
-          title: Priority
-        short_description:
-          type: string
-          title: Short Description
-        short_description_id:
-          type: integer
-          title: Short Description Id
-        timestamp:
-          type: string
-          format: date-time
-          title: Timestamp
-      type: object
-      required:
-      - critical
-      - long_description
-      - name
-      - priority
-      - short_description
-      - short_description_id
-      - timestamp
-      title: AnalystResponse
     BluedotInfo:
       properties:
         src:
@@ -562,6 +424,221 @@ components:
       required:
       - src
       title: BluedotInfo
+    SortDirection:
+      type: string
+      enum:
+      - asc
+      - desc
+      title: SortDirection
+    ValidationError:
+      properties:
+        loc:
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+          type: array
+          title: Location
+        msg:
+          type: string
+          title: Message
+        type:
+          type: string
+          title: Error Type
+      type: object
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError
+    PacketInfo:
+      properties:
+        linktype:
+          type: integer
+          title: Linktype
+      type: object
+      required:
+      - linktype
+      title: PacketInfo
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
+    AlertCategory:
+      type: string
+      enum:
+      - reportable
+      - benign
+      - investigated
+      - resolved
+      - escalated
+      - noncritical
+      - critical
+      title: AlertCategory
+    CurrentPageInfo:
+      properties:
+        size:
+          type: integer
+          title: Size
+        number:
+          type: integer
+          title: Number
+      type: object
+      required:
+      - size
+      - number
+      title: CurrentPageInfo
+    AlertResponse:
+      properties:
+        total:
+          type: integer
+          title: Total
+        page:
+          $ref: '#/components/schemas/CurrentPageInfo'
+        next:
+          $ref: '#/components/schemas/NextPageInfo'
+        category:
+          $ref: '#/components/schemas/AlertCategory'
+        filter:
+          $ref: '#/components/schemas/HitFilter'
+        sort:
+          items:
+            additionalProperties:
+              $ref: '#/components/schemas/SortDirection'
+            type: object
+          type: array
+          title: Sort
+        alerts:
+          items:
+            anyOf:
+            - $ref: '#/components/schemas/SaganAlert'
+            - $ref: '#/components/schemas/SuricataAlert'
+          type: array
+          title: Alerts
+      type: object
+      required:
+      - total
+      - page
+      - next
+      - category
+      - filter
+      - sort
+      - alerts
+      title: AlertResponse
+    GeoIPLocation:
+      properties:
+        city:
+          type: string
+          title: City
+        country:
+          type: string
+          title: Country
+        latitude:
+          type: number
+          title: Latitude
+        longitude:
+          type: number
+          title: Longitude
+        postal:
+          type: string
+          title: Postal
+        subdivision:
+          type: string
+          title: Subdivision
+        timezone:
+          type: string
+          title: Timezone
+      type: object
+      required:
+      - city
+      - country
+      - latitude
+      - longitude
+      - postal
+      - subdivision
+      - timezone
+      title: GeoIPLocation
+    AlertInfo:
+      properties:
+        action:
+          type: string
+          title: Action
+        category:
+          type: string
+          title: Category
+        gid:
+          type: integer
+          title: Gid
+        metadata:
+          additionalProperties: true
+          type: object
+          title: Metadata
+        rev:
+          type: string
+          title: Rev
+        rule:
+          type: string
+          title: Rule
+        severity:
+          type: integer
+          title: Severity
+        signature:
+          type: string
+          title: Signature
+        signature_id:
+          type: string
+          title: Signature Id
+      type: object
+      required:
+      - action
+      - category
+      - gid
+      - metadata
+      - rev
+      - rule
+      - severity
+      - signature
+      - signature_id
+      title: AlertInfo
+    RangeQueryOperator:
+      type: string
+      enum:
+      - lt
+      - gt
+      - lte
+      - gte
+      title: RangeQueryOperator
+    FlowStats:
+      properties:
+        bytes_toclient:
+          type: string
+          title: Bytes Toclient
+        bytes_toserver:
+          type: string
+          title: Bytes Toserver
+        pkts_toclient:
+          type: string
+          title: Pkts Toclient
+        pkts_toserver:
+          type: string
+          title: Pkts Toserver
+        start:
+          type: string
+          format: date-time
+          title: Start
+      type: object
+      required:
+      - bytes_toclient
+      - bytes_toserver
+      - pkts_toclient
+      - pkts_toserver
+      - start
+      title: FlowStats
     SuricataAlert:
       properties:
         alert:
@@ -702,83 +779,6 @@ components:
       - packet_info
       - stream
       title: SuricataAlert
-    HTTPValidationError:
-      properties:
-        detail:
-          items:
-            $ref: '#/components/schemas/ValidationError'
-          type: array
-          title: Detail
-      type: object
-      title: HTTPValidationError
-    FlowStats:
-      properties:
-        bytes_toclient:
-          type: string
-          title: Bytes Toclient
-        bytes_toserver:
-          type: string
-          title: Bytes Toserver
-        pkts_toclient:
-          type: string
-          title: Pkts Toclient
-        pkts_toserver:
-          type: string
-          title: Pkts Toserver
-        start:
-          type: string
-          format: date-time
-          title: Start
-      type: object
-      required:
-      - bytes_toclient
-      - bytes_toserver
-      - pkts_toclient
-      - pkts_toserver
-      - start
-      title: FlowStats
-    AlertInfo:
-      properties:
-        action:
-          type: string
-          title: Action
-        category:
-          type: string
-          title: Category
-        gid:
-          type: integer
-          title: Gid
-        metadata:
-          additionalProperties: true
-          type: object
-          title: Metadata
-        rev:
-          type: string
-          title: Rev
-        rule:
-          type: string
-          title: Rule
-        severity:
-          type: integer
-          title: Severity
-        signature:
-          type: string
-          title: Signature
-        signature_id:
-          type: string
-          title: Signature Id
-      type: object
-      required:
-      - action
-      - category
-      - gid
-      - metadata
-      - rev
-      - rule
-      - severity
-      - signature
-      - signature_id
-      title: AlertInfo
   securitySchemes:
     APIKeyHeader:
       type: apiKey
