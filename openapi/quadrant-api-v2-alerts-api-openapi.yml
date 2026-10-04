@@ -79,182 +79,27 @@ paths:
                 $ref: '#/components/schemas/HTTPValidationError'
 components:
   schemas:
-    AnalystResponse:
+    CurrentPageInfo:
       properties:
-        critical:
-          type: string
-          title: Critical
-        long_description:
-          type: string
-          title: Long Description
-        name:
-          type: string
-          title: Name
-        priority:
+        size:
           type: integer
-          title: Priority
-        short_description:
-          type: string
-          title: Short Description
-        short_description_id:
+          title: Size
+        number:
           type: integer
-          title: Short Description Id
-        timestamp:
-          type: string
-          format: date-time
-          title: Timestamp
+          title: Number
       type: object
       required:
-      - critical
-      - long_description
-      - name
-      - priority
-      - short_description
-      - short_description_id
-      - timestamp
-      title: AnalystResponse
-    NextPageInfo:
-      properties:
-        url:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Url
-        expires_at:
-          anyOf:
-          - type: integer
-          - type: 'null'
-          title: Expires At
-      type: object
-      required:
-      - url
-      - expires_at
-      title: NextPageInfo
-    GeoIPInfo:
-      properties:
-        dest:
-          $ref: '#/components/schemas/GeoIPLocation'
-        src:
-          $ref: '#/components/schemas/GeoIPLocation'
-      type: object
-      required:
-      - dest
-      - src
-      title: GeoIPInfo
-    HitFilter:
-      properties:
-        terms:
-          items:
-            additionalProperties: true
-            type: object
-          type: array
-          title: Terms
-        ranges:
-          items:
-            additionalProperties:
-              additionalProperties:
-                anyOf:
-                - type: string
-                  format: date-time
-                - type: integer
-                - type: string
-              propertyNames:
-                $ref: '#/components/schemas/RangeQueryOperator'
-              type: object
-            type: object
-          type: array
-          title: Ranges
-      type: object
-      required:
-      - terms
-      - ranges
-      title: HitFilter
-    BluedotSrc:
-      properties:
-        api_user:
-          type: string
-          title: Api User
-        category:
-          type: string
-          title: Category
-        code:
-          type: integer
-          title: Code
-        comments:
-          type: string
-          title: Comments
-        counter:
-          type: integer
-          title: Counter
-        ctime:
-          type: string
-          format: date-time
-          title: Ctime
-        ctime_epoch:
-          type: integer
-          title: Ctime Epoch
-        last_seen:
-          type: string
-          format: date-time
-          title: Last Seen
-        mtime:
-          type: string
-          format: date-time
-          title: Mtime
-        mtime_epoch:
-          type: integer
-          title: Mtime Epoch
-        query:
-          type: string
-          title: Query
-        query_counter:
-          type: integer
-          title: Query Counter
-        query_timestamp:
-          type: string
-          format: date-time
-          title: Query Timestamp
-        query_type:
-          type: string
-          title: Query Type
-        source:
-          type: string
-          title: Source
-      type: object
-      required:
-      - api_user
-      - category
-      - code
-      - comments
-      - counter
-      - ctime
-      - ctime_epoch
-      - last_seen
-      - mtime
-      - mtime_epoch
-      - query
-      - query_counter
-      - query_timestamp
-      - query_type
-      - source
-      title: BluedotSrc
-    NormalizationInfo:
-      properties:
-        src-ip:
-          type: string
-          title: Src-Ip
-        src-port:
-          type: string
-          title: Src-Port
-        username:
-          type: string
-          title: Username
-      type: object
-      required:
-      - src-ip
-      - src-port
-      - username
-      title: NormalizationInfo
+      - size
+      - number
+      title: CurrentPageInfo
+    RangeQueryOperator:
+      type: string
+      enum:
+      - lt
+      - gt
+      - lte
+      - gte
+      title: RangeQueryOperator
     SaganAlert:
       properties:
         alert:
@@ -416,50 +261,6 @@ components:
       - tag
       - xff
       title: SaganAlert
-    BluedotInfo:
-      properties:
-        src:
-          $ref: '#/components/schemas/BluedotSrc'
-      type: object
-      required:
-      - src
-      title: BluedotInfo
-    SortDirection:
-      type: string
-      enum:
-      - asc
-      - desc
-      title: SortDirection
-    ValidationError:
-      properties:
-        loc:
-          items:
-            anyOf:
-            - type: string
-            - type: integer
-          type: array
-          title: Location
-        msg:
-          type: string
-          title: Message
-        type:
-          type: string
-          title: Error Type
-      type: object
-      required:
-      - loc
-      - msg
-      - type
-      title: ValidationError
-    PacketInfo:
-      properties:
-        linktype:
-          type: integer
-          title: Linktype
-      type: object
-      required:
-      - linktype
-      title: PacketInfo
     HTTPValidationError:
       properties:
         detail:
@@ -469,6 +270,183 @@ components:
           title: Detail
       type: object
       title: HTTPValidationError
+    NextPageInfo:
+      properties:
+        url:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Url
+        expires_at:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Expires At
+      type: object
+      required:
+      - url
+      - expires_at
+      title: NextPageInfo
+    PacketInfo:
+      properties:
+        linktype:
+          type: integer
+          title: Linktype
+      type: object
+      required:
+      - linktype
+      title: PacketInfo
+    HitFilter:
+      properties:
+        terms:
+          items:
+            additionalProperties: true
+            type: object
+          type: array
+          title: Terms
+        ranges:
+          items:
+            additionalProperties:
+              additionalProperties:
+                anyOf:
+                - type: string
+                  format: date-time
+                - type: integer
+                - type: string
+              propertyNames:
+                $ref: '#/components/schemas/RangeQueryOperator'
+              type: object
+            type: object
+          type: array
+          title: Ranges
+      type: object
+      required:
+      - terms
+      - ranges
+      title: HitFilter
+    FlowStats:
+      properties:
+        bytes_toclient:
+          type: string
+          title: Bytes Toclient
+        bytes_toserver:
+          type: string
+          title: Bytes Toserver
+        pkts_toclient:
+          type: string
+          title: Pkts Toclient
+        pkts_toserver:
+          type: string
+          title: Pkts Toserver
+        start:
+          type: string
+          format: date-time
+          title: Start
+      type: object
+      required:
+      - bytes_toclient
+      - bytes_toserver
+      - pkts_toclient
+      - pkts_toserver
+      - start
+      title: FlowStats
+    BluedotSrc:
+      properties:
+        api_user:
+          type: string
+          title: Api User
+        category:
+          type: string
+          title: Category
+        code:
+          type: integer
+          title: Code
+        comments:
+          type: string
+          title: Comments
+        counter:
+          type: integer
+          title: Counter
+        ctime:
+          type: string
+          format: date-time
+          title: Ctime
+        ctime_epoch:
+          type: integer
+          title: Ctime Epoch
+        last_seen:
+          type: string
+          format: date-time
+          title: Last Seen
+        mtime:
+          type: string
+          format: date-time
+          title: Mtime
+        mtime_epoch:
+          type: integer
+          title: Mtime Epoch
+        query:
+          type: string
+          title: Query
+        query_counter:
+          type: integer
+          title: Query Counter
+        query_timestamp:
+          type: string
+          format: date-time
+          title: Query Timestamp
+        query_type:
+          type: string
+          title: Query Type
+        source:
+          type: string
+          title: Source
+      type: object
+      required:
+      - api_user
+      - category
+      - code
+      - comments
+      - counter
+      - ctime
+      - ctime_epoch
+      - last_seen
+      - mtime
+      - mtime_epoch
+      - query
+      - query_counter
+      - query_timestamp
+      - query_type
+      - source
+      title: BluedotSrc
+    NormalizationInfo:
+      properties:
+        src-ip:
+          type: string
+          title: Src-Ip
+        src-port:
+          type: string
+          title: Src-Port
+        username:
+          type: string
+          title: Username
+      type: object
+      required:
+      - src-ip
+      - src-port
+      - username
+      title: NormalizationInfo
+    GeoIPInfo:
+      properties:
+        dest:
+          $ref: '#/components/schemas/GeoIPLocation'
+        src:
+          $ref: '#/components/schemas/GeoIPLocation'
+      type: object
+      required:
+      - dest
+      - src
+      title: GeoIPInfo
     AlertCategory:
       type: string
       enum:
@@ -480,89 +458,6 @@ components:
       - noncritical
       - critical
       title: AlertCategory
-    CurrentPageInfo:
-      properties:
-        size:
-          type: integer
-          title: Size
-        number:
-          type: integer
-          title: Number
-      type: object
-      required:
-      - size
-      - number
-      title: CurrentPageInfo
-    AlertResponse:
-      properties:
-        total:
-          type: integer
-          title: Total
-        page:
-          $ref: '#/components/schemas/CurrentPageInfo'
-        next:
-          $ref: '#/components/schemas/NextPageInfo'
-        category:
-          $ref: '#/components/schemas/AlertCategory'
-        filter:
-          $ref: '#/components/schemas/HitFilter'
-        sort:
-          items:
-            additionalProperties:
-              $ref: '#/components/schemas/SortDirection'
-            type: object
-          type: array
-          title: Sort
-        alerts:
-          items:
-            anyOf:
-            - $ref: '#/components/schemas/SaganAlert'
-            - $ref: '#/components/schemas/SuricataAlert'
-          type: array
-          title: Alerts
-      type: object
-      required:
-      - total
-      - page
-      - next
-      - category
-      - filter
-      - sort
-      - alerts
-      title: AlertResponse
-    GeoIPLocation:
-      properties:
-        city:
-          type: string
-          title: City
-        country:
-          type: string
-          title: Country
-        latitude:
-          type: number
-          title: Latitude
-        longitude:
-          type: number
-          title: Longitude
-        postal:
-          type: string
-          title: Postal
-        subdivision:
-          type: string
-          title: Subdivision
-        timezone:
-          type: string
-          title: Timezone
-      type: object
-      required:
-      - city
-      - country
-      - latitude
-      - longitude
-      - postal
-      - subdivision
-      - timezone
-      title: GeoIPLocation
     AlertInfo:
       properties:
         action:
@@ -605,40 +500,12 @@ components:
       - signature
       - signature_id
       title: AlertInfo
-    RangeQueryOperator:
+    SortDirection:
       type: string
       enum:
-      - lt
-      - gt
-      - lte
-      - gte
-      title: RangeQueryOperator
-    FlowStats:
-      properties:
-        bytes_toclient:
-          type: string
-          title: Bytes Toclient
-        bytes_toserver:
-          type: string
-          title: Bytes Toserver
-        pkts_toclient:
-          type: string
-          title: Pkts Toclient
-        pkts_toserver:
-          type: string
-          title: Pkts Toserver
-        start:
-          type: string
-          format: date-time
-          title: Start
-      type: object
-      required:
-      - bytes_toclient
-      - bytes_toserver
-      - pkts_toclient
-      - pkts_toserver
-      - start
-      title: FlowStats
+      - asc
+      - desc
+      title: SortDirection
     SuricataAlert:
       properties:
         alert:
@@ -779,6 +646,139 @@ components:
       - packet_info
       - stream
       title: SuricataAlert
+    GeoIPLocation:
+      properties:
+        city:
+          type: string
+          title: City
+        country:
+          type: string
+          title: Country
+        latitude:
+          type: number
+          title: Latitude
+        longitude:
+          type: number
+          title: Longitude
+        postal:
+          type: string
+          title: Postal
+        subdivision:
+          type: string
+          title: Subdivision
+        timezone:
+          type: string
+          title: Timezone
+      type: object
+      required:
+      - city
+      - country
+      - latitude
+      - longitude
+      - postal
+      - subdivision
+      - timezone
+      title: GeoIPLocation
+    BluedotInfo:
+      properties:
+        src:
+          $ref: '#/components/schemas/BluedotSrc'
+      type: object
+      required:
+      - src
+      title: BluedotInfo
+    AlertResponse:
+      properties:
+        total:
+          type: integer
+          title: Total
+        page:
+          $ref: '#/components/schemas/CurrentPageInfo'
+        next:
+          $ref: '#/components/schemas/NextPageInfo'
+        category:
+          $ref: '#/components/schemas/AlertCategory'
+        filter:
+          $ref: '#/components/schemas/HitFilter'
+        sort:
+          items:
+            additionalProperties:
+              $ref: '#/components/schemas/SortDirection'
+            type: object
+          type: array
+          title: Sort
+        alerts:
+          items:
+            anyOf:
+            - $ref: '#/components/schemas/SaganAlert'
+            - $ref: '#/components/schemas/SuricataAlert'
+          type: array
+          title: Alerts
+      type: object
+      required:
+      - total
+      - page
+      - next
+      - category
+      - filter
+      - sort
+      - alerts
+      title: AlertResponse
+    AnalystResponse:
+      properties:
+        critical:
+          type: string
+          title: Critical
+        long_description:
+          type: string
+          title: Long Description
+        name:
+          type: string
+          title: Name
+        priority:
+          type: integer
+          title: Priority
+        short_description:
+          type: string
+          title: Short Description
+        short_description_id:
+          type: integer
+          title: Short Description Id
+        timestamp:
+          type: string
+          format: date-time
+          title: Timestamp
+      type: object
+      required:
+      - critical
+      - long_description
+      - name
+      - priority
+      - short_description
+      - short_description_id
+      - timestamp
+      title: AnalystResponse
+    ValidationError:
+      properties:
+        loc:
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+          type: array
+          title: Location
+        msg:
+          type: string
+          title: Message
+        type:
+          type: string
+          title: Error Type
+      type: object
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError
   securitySchemes:
     APIKeyHeader:
       type: apiKey
