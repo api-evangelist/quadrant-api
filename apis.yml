@@ -39,6 +39,9 @@ modified: '2026-05-19'
 url: https://raw.githubusercontent.com/api-evangelist/quadrant-api/refs/heads/main/apis.yml
 specificationVersion: '0.23'
 common:
+  - type: CapabilityMap
+    url: capabilities/quadrant-api-capability-edges.yml
+    name: Quadrant API Business Capability Map
   - type: AgenticAccess
     url: agentic-access/quadrant-api-agentic-access.yml
   - type: DomainSecurity

@@ -1,0 +1,25 @@
+slug: quadrant-api
+provider: Quadrant API
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Software & Technology
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 1
+edges:
+- tag: v2 alerts
+  spec_file: quadrant-api-v2-alerts-api-openapi.yml
+  capability_id: BC-620.30
+  capability_id_l1: BC-620
+  capability_name: Threat Detection & Response Management
+  confidence: 0.85
+  evidence: GET /v2/alerts/{client_id}/ 'Get Alerts'; schemas SuricataAlert, SaganAlert, PacketInfo, AlertCategory,
+    AnalystResponse
+  reason: Suricata/Sagan alert and packet schemas with analyst responses indicate network intrusion-detection
+    alert retrieval for security monitoring, i.e. threat detection and response, not business alerting.
