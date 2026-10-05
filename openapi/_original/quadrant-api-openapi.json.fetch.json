@@ -1,0 +1,12 @@
+{
+ "url": "https://api.qis.io/openapi.json",
+ "requested_url": "https://api.qis.io/openapi.json",
+ "status": 200,
+ "content_type": "application/json",
+ "bytes": 17604,
+ "sha256": "0f74871934249a4b507fef9e51f0291d0f1ecbe864d4bed393eb207f3289b8e7",
+ "fetched_at": "2026-10-04",
+ "fetched_by": "APIEvangelist-Harvest/1.0 (+https://apievangelist.com)",
+ "match": "byte-identical",
+ "note": "Re-fetched from the provider by verify-openapi-sources.py; the archived file is byte-identical to what the provider serves."
+}
