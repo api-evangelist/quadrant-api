@@ -39,6 +39,12 @@ modified: '2026-05-19'
 url: https://raw.githubusercontent.com/api-evangelist/quadrant-api/refs/heads/main/apis.yml
 specificationVersion: '0.23'
 common:
+  - type: Plans
+    url: plans/quadrant-api-plans-pricing.yml
+  - type: RateLimits
+    url: rate-limits/quadrant-api-rate-limits.yml
+  - type: FinOps
+    url: finops/quadrant-api-finops.yml
   - type: CapabilityMap
     url: capabilities/quadrant-api-capability-edges.yml
     name: Quadrant API Business Capability Map
