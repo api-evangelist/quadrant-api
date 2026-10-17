@@ -79,27 +79,194 @@ paths:
                 $ref: '#/components/schemas/HTTPValidationError'
 components:
   schemas:
-    CurrentPageInfo:
+    AlertResponse:
       properties:
-        size:
+        total:
           type: integer
-          title: Size
-        number:
-          type: integer
-          title: Number
+          title: Total
+        page:
+          $ref: '#/components/schemas/CurrentPageInfo'
+        next:
+          $ref: '#/components/schemas/NextPageInfo'
+        category:
+          $ref: '#/components/schemas/AlertCategory'
+        filter:
+          $ref: '#/components/schemas/HitFilter'
+        sort:
+          items:
+            additionalProperties:
+              $ref: '#/components/schemas/SortDirection'
+            type: object
+          type: array
+          title: Sort
+        alerts:
+          items:
+            anyOf:
+            - $ref: '#/components/schemas/SaganAlert'
+            - $ref: '#/components/schemas/SuricataAlert'
+          type: array
+          title: Alerts
       type: object
       required:
-      - size
-      - number
-      title: CurrentPageInfo
-    RangeQueryOperator:
+      - total
+      - page
+      - next
+      - category
+      - filter
+      - sort
+      - alerts
+      title: AlertResponse
+    AlertCategory:
       type: string
       enum:
-      - lt
-      - gt
-      - lte
-      - gte
-      title: RangeQueryOperator
+      - reportable
+      - benign
+      - investigated
+      - resolved
+      - escalated
+      - noncritical
+      - critical
+      title: AlertCategory
+    SuricataAlert:
+      properties:
+        alert:
+          $ref: '#/components/schemas/AlertInfo'
+        analyst:
+          items:
+            $ref: '#/components/schemas/AnalystResponse'
+          type: array
+          title: Analyst
+        analyst_final_response:
+          $ref: '#/components/schemas/AnalystResponse'
+        auto_answer:
+          type: string
+          title: Auto Answer
+        auto_answer_id:
+          type: string
+          title: Auto Answer Id
+        auto_emailed:
+          type: string
+          title: Auto Emailed
+        bluedot:
+          $ref: '#/components/schemas/BluedotInfo'
+        critical:
+          type: string
+          title: Critical
+        cust_id:
+          type: string
+          title: Cust Id
+        dest_dns:
+          type: string
+          title: Dest Dns
+        dest_ip:
+          type: string
+          title: Dest Ip
+        dest_port:
+          type: string
+          title: Dest Port
+        emailed:
+          type: string
+          title: Emailed
+        es_index:
+          type: string
+          title: Es Index
+        event_type:
+          type: string
+          title: Event Type
+        flow_id:
+          type: string
+          title: Flow Id
+        geoip:
+          $ref: '#/components/schemas/GeoIPInfo'
+        geoip_dest:
+          $ref: '#/components/schemas/GeoIPLocation'
+        geoip_src:
+          $ref: '#/components/schemas/GeoIPLocation'
+        host:
+          type: string
+          title: Host
+        in_iface:
+          type: string
+          title: In Iface
+        proto:
+          type: string
+          title: Proto
+        sensor_description:
+          type: string
+          title: Sensor Description
+        snort_cid:
+          type: string
+          title: Snort Cid
+        snort_id:
+          type: string
+          title: Snort Id
+        snort_sid:
+          type: string
+          title: Snort Sid
+        src_dns:
+          type: string
+          title: Src Dns
+        src_ip:
+          type: string
+          title: Src Ip
+        src_port:
+          type: string
+          title: Src Port
+        timestamp:
+          type: string
+          format: date-time
+          title: Timestamp
+        flow:
+          $ref: '#/components/schemas/FlowStats'
+        packet:
+          type: string
+          title: Packet
+        packet_info:
+          $ref: '#/components/schemas/PacketInfo'
+        sensor_type:
+          type: string
+          title: Sensor Type
+          default: pie
+        stream:
+          type: integer
+          title: Stream
+      type: object
+      required:
+      - alert
+      - analyst
+      - analyst_final_response
+      - auto_answer
+      - auto_answer_id
+      - auto_emailed
+      - bluedot
+      - critical
+      - cust_id
+      - dest_dns
+      - dest_ip
+      - dest_port
+      - emailed
+      - es_index
+      - event_type
+      - flow_id
+      - geoip
+      - geoip_dest
+      - geoip_src
+      - host
+      - in_iface
+      - proto
+      - sensor_description
+      - snort_cid
+      - snort_id
+      - snort_sid
+      - src_dns
+      - src_ip
+      - src_port
+      - timestamp
+      - flow
+      - packet
+      - packet_info
+      - stream
+      title: SuricataAlert
     SaganAlert:
       properties:
         alert:
@@ -270,32 +437,31 @@ components:
           title: Detail
       type: object
       title: HTTPValidationError
-    NextPageInfo:
+    NormalizationInfo:
       properties:
-        url:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Url
-        expires_at:
-          anyOf:
-          - type: integer
-          - type: 'null'
-          title: Expires At
+        src-ip:
+          type: string
+          title: Src-Ip
+        src-port:
+          type: string
+          title: Src-Port
+        username:
+          type: string
+          title: Username
       type: object
       required:
-      - url
-      - expires_at
-      title: NextPageInfo
-    PacketInfo:
-      properties:
-        linktype:
-          type: integer
-          title: Linktype
-      type: object
-      required:
-      - linktype
-      title: PacketInfo
+      - src-ip
+      - src-port
+      - username
+      title: NormalizationInfo
+    RangeQueryOperator:
+      type: string
+      enum:
+      - lt
+      - gt
+      - lte
+      - gte
+      title: RangeQueryOperator
     HitFilter:
       properties:
         terms:
@@ -324,32 +490,78 @@ components:
       - terms
       - ranges
       title: HitFilter
-    FlowStats:
+    SortDirection:
+      type: string
+      enum:
+      - asc
+      - desc
+      title: SortDirection
+    AlertInfo:
       properties:
-        bytes_toclient:
+        action:
           type: string
-          title: Bytes Toclient
-        bytes_toserver:
+          title: Action
+        category:
           type: string
-          title: Bytes Toserver
-        pkts_toclient:
+          title: Category
+        gid:
+          type: integer
+          title: Gid
+        metadata:
+          additionalProperties: true
+          type: object
+          title: Metadata
+        rev:
           type: string
-          title: Pkts Toclient
-        pkts_toserver:
+          title: Rev
+        rule:
           type: string
-          title: Pkts Toserver
-        start:
+          title: Rule
+        severity:
+          type: integer
+          title: Severity
+        signature:
           type: string
-          format: date-time
-          title: Start
+          title: Signature
+        signature_id:
+          type: string
+          title: Signature Id
       type: object
       required:
-      - bytes_toclient
-      - bytes_toserver
-      - pkts_toclient
-      - pkts_toserver
-      - start
-      title: FlowStats
+      - action
+      - category
+      - gid
+      - metadata
+      - rev
+      - rule
+      - severity
+      - signature
+      - signature_id
+      title: AlertInfo
+    CurrentPageInfo:
+      properties:
+        size:
+          type: integer
+          title: Size
+        number:
+          type: integer
+          title: Number
+      type: object
+      required:
+      - size
+      - number
+      title: CurrentPageInfo
+    GeoIPInfo:
+      properties:
+        dest:
+          $ref: '#/components/schemas/GeoIPLocation'
+        src:
+          $ref: '#/components/schemas/GeoIPLocation'
+      type: object
+      required:
+      - dest
+      - src
+      title: GeoIPInfo
     BluedotSrc:
       properties:
         api_user:
@@ -419,233 +631,36 @@ components:
       - query_type
       - source
       title: BluedotSrc
-    NormalizationInfo:
+    PacketInfo:
       properties:
-        src-ip:
-          type: string
-          title: Src-Ip
-        src-port:
-          type: string
-          title: Src-Port
-        username:
-          type: string
-          title: Username
-      type: object
-      required:
-      - src-ip
-      - src-port
-      - username
-      title: NormalizationInfo
-    GeoIPInfo:
-      properties:
-        dest:
-          $ref: '#/components/schemas/GeoIPLocation'
-        src:
-          $ref: '#/components/schemas/GeoIPLocation'
-      type: object
-      required:
-      - dest
-      - src
-      title: GeoIPInfo
-    AlertCategory:
-      type: string
-      enum:
-      - reportable
-      - benign
-      - investigated
-      - resolved
-      - escalated
-      - noncritical
-      - critical
-      title: AlertCategory
-    AlertInfo:
-      properties:
-        action:
-          type: string
-          title: Action
-        category:
-          type: string
-          title: Category
-        gid:
+        linktype:
           type: integer
-          title: Gid
-        metadata:
-          additionalProperties: true
-          type: object
-          title: Metadata
-        rev:
-          type: string
-          title: Rev
-        rule:
-          type: string
-          title: Rule
-        severity:
-          type: integer
-          title: Severity
-        signature:
-          type: string
-          title: Signature
-        signature_id:
-          type: string
-          title: Signature Id
+          title: Linktype
       type: object
       required:
-      - action
-      - category
-      - gid
-      - metadata
-      - rev
-      - rule
-      - severity
-      - signature
-      - signature_id
-      title: AlertInfo
-    SortDirection:
-      type: string
-      enum:
-      - asc
-      - desc
-      title: SortDirection
-    SuricataAlert:
+      - linktype
+      title: PacketInfo
+    ValidationError:
       properties:
-        alert:
-          $ref: '#/components/schemas/AlertInfo'
-        analyst:
+        loc:
           items:
-            $ref: '#/components/schemas/AnalystResponse'
+            anyOf:
+            - type: string
+            - type: integer
           type: array
-          title: Analyst
-        analyst_final_response:
-          $ref: '#/components/schemas/AnalystResponse'
-        auto_answer:
+          title: Location
+        msg:
           type: string
-          title: Auto Answer
-        auto_answer_id:
+          title: Message
+        type:
           type: string
-          title: Auto Answer Id
-        auto_emailed:
-          type: string
-          title: Auto Emailed
-        bluedot:
-          $ref: '#/components/schemas/BluedotInfo'
-        critical:
-          type: string
-          title: Critical
-        cust_id:
-          type: string
-          title: Cust Id
-        dest_dns:
-          type: string
-          title: Dest Dns
-        dest_ip:
-          type: string
-          title: Dest Ip
-        dest_port:
-          type: string
-          title: Dest Port
-        emailed:
-          type: string
-          title: Emailed
-        es_index:
-          type: string
-          title: Es Index
-        event_type:
-          type: string
-          title: Event Type
-        flow_id:
-          type: string
-          title: Flow Id
-        geoip:
-          $ref: '#/components/schemas/GeoIPInfo'
-        geoip_dest:
-          $ref: '#/components/schemas/GeoIPLocation'
-        geoip_src:
-          $ref: '#/components/schemas/GeoIPLocation'
-        host:
-          type: string
-          title: Host
-        in_iface:
-          type: string
-          title: In Iface
-        proto:
-          type: string
-          title: Proto
-        sensor_description:
-          type: string
-          title: Sensor Description
-        snort_cid:
-          type: string
-          title: Snort Cid
-        snort_id:
-          type: string
-          title: Snort Id
-        snort_sid:
-          type: string
-          title: Snort Sid
-        src_dns:
-          type: string
-          title: Src Dns
-        src_ip:
-          type: string
-          title: Src Ip
-        src_port:
-          type: string
-          title: Src Port
-        timestamp:
-          type: string
-          format: date-time
-          title: Timestamp
-        flow:
-          $ref: '#/components/schemas/FlowStats'
-        packet:
-          type: string
-          title: Packet
-        packet_info:
-          $ref: '#/components/schemas/PacketInfo'
-        sensor_type:
-          type: string
-          title: Sensor Type
-          default: pie
-        stream:
-          type: integer
-          title: Stream
+          title: Error Type
       type: object
       required:
-      - alert
-      - analyst
-      - analyst_final_response
-      - auto_answer
-      - auto_answer_id
-      - auto_emailed
-      - bluedot
-      - critical
-      - cust_id
-      - dest_dns
-      - dest_ip
-      - dest_port
-      - emailed
-      - es_index
-      - event_type
-      - flow_id
-      - geoip
-      - geoip_dest
-      - geoip_src
-      - host
-      - in_iface
-      - proto
-      - sensor_description
-      - snort_cid
-      - snort_id
-      - snort_sid
-      - src_dns
-      - src_ip
-      - src_port
-      - timestamp
-      - flow
-      - packet
-      - packet_info
-      - stream
-      title: SuricataAlert
+      - loc
+      - msg
+      - type
+      title: ValidationError
     GeoIPLocation:
       properties:
         city:
@@ -679,51 +694,32 @@ components:
       - subdivision
       - timezone
       title: GeoIPLocation
-    BluedotInfo:
+    FlowStats:
       properties:
-        src:
-          $ref: '#/components/schemas/BluedotSrc'
+        bytes_toclient:
+          type: string
+          title: Bytes Toclient
+        bytes_toserver:
+          type: string
+          title: Bytes Toserver
+        pkts_toclient:
+          type: string
+          title: Pkts Toclient
+        pkts_toserver:
+          type: string
+          title: Pkts Toserver
+        start:
+          type: string
+          format: date-time
+          title: Start
       type: object
       required:
-      - src
-      title: BluedotInfo
-    AlertResponse:
-      properties:
-        total:
-          type: integer
-          title: Total
-        page:
-          $ref: '#/components/schemas/CurrentPageInfo'
-        next:
-          $ref: '#/components/schemas/NextPageInfo'
-        category:
-          $ref: '#/components/schemas/AlertCategory'
-        filter:
-          $ref: '#/components/schemas/HitFilter'
-        sort:
-          items:
-            additionalProperties:
-              $ref: '#/components/schemas/SortDirection'
-            type: object
-          type: array
-          title: Sort
-        alerts:
-          items:
-            anyOf:
-            - $ref: '#/components/schemas/SaganAlert'
-            - $ref: '#/components/schemas/SuricataAlert'
-          type: array
-          title: Alerts
-      type: object
-      required:
-      - total
-      - page
-      - next
-      - category
-      - filter
-      - sort
-      - alerts
-      title: AlertResponse
+      - bytes_toclient
+      - bytes_toserver
+      - pkts_toclient
+      - pkts_toserver
+      - start
+      title: FlowStats
     AnalystResponse:
       properties:
         critical:
@@ -758,27 +754,31 @@ components:
       - short_description_id
       - timestamp
       title: AnalystResponse
-    ValidationError:
+    BluedotInfo:
       properties:
-        loc:
-          items:
-            anyOf:
-            - type: string
-            - type: integer
-          type: array
-          title: Location
-        msg:
-          type: string
-          title: Message
-        type:
-          type: string
-          title: Error Type
+        src:
+          $ref: '#/components/schemas/BluedotSrc'
       type: object
       required:
-      - loc
-      - msg
-      - type
-      title: ValidationError
+      - src
+      title: BluedotInfo
+    NextPageInfo:
+      properties:
+        url:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Url
+        expires_at:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Expires At
+      type: object
+      required:
+      - url
+      - expires_at
+      title: NextPageInfo
   securitySchemes:
     APIKeyHeader:
       type: apiKey
