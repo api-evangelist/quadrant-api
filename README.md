@@ -1,4 +1,4 @@
-# Quadrant API (quadrant-api)
+# Quadrant API
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,52 +66,72 @@
 
 The Quadrant API currently allows users to retrieve alert data by their client ID.
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/quadrant-api/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/quadrant-api/refs/heads/main/apis.yml)
+**Areas:** Alerts · Security · Threat Intelligence
 
-## Scope
+## Quadrant API on APIs.io
 
-- **Type:** Index
-- **Position:** Consumer
-- **Access:** 3rd-Party
+Everything profiled for Quadrant API is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/quadrant-api/](https://apis.io/providers/quadrant-api/)** — or go straight to one of the APIs or properties below.
 
-## Tags
+### APIs (1)
 
-- Alerts
-- Security
-- Threat Intelligence
+- [Quadrant API v2 alerts API](https://apis.io/apis/quadrant-api/quadrant-api-v2-alerts-api/) — The v2 alerts API from Quadrant API — 1 operation(s) for v2 alerts.
 
-## Timestamps
+### Published properties
 
-- **Created:** 2025-02-12
-- **Modified:** 2026-05-19
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-## APIs
+#### Agentic access (1)
 
-### Quadrant API
+Which operations an agent can call, which act, and which need a human in the loop.
 
-The Quadrant API currently allows users to retrieve alert data by their client ID.
+- [Quadrant Api Agentic Access](https://apis.io/agentic-access/quadrant-api/quadrant-api-agentic-access/)
 
-- **Human URL:** [https://api.qis.io/redoc](https://api.qis.io/redoc)
-- **Base URL:** `https://api.qis.io`
+#### Collections (2)
 
-#### Tags
+Postman and Open Collection request collections.
 
-- Alerts
-- Security
-- Threat Intelligence
+- [Quadrant API](https://apis.io/collections/quadrant-api/open-quadrant-api/)
+- [Quadrant v2 alerts API](https://apis.io/collections/quadrant-api/open-quadrant-api-v2-alerts-api/)
 
-#### Properties
+#### Security (2)
 
-- [Documentation](https://api.qis.io/redoc)
-- [OpenAPI](https://raw.githubusercontent.com/api-evangelist/quadrant-api/main/openapi/quadrant-api-openapi.json) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/quadrant-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/quadrant-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+Authentication, trust centre, and vulnerability disclosure.
 
-## Common Properties
+- [Quadrant Api Authentication](https://apis.io/security/quadrant-api/quadrant-api-authentication/)
+- [Quadrant Api Domain Security](https://apis.io/security/quadrant-api/quadrant-api-domain-security/)
 
-- [LinkedIn](https://www.linkedin.com/company/quadrantprotocol)
+#### Plans and pricing (1)
 
-## Maintainers
+Published plans, tiers and prices.
 
-**FN:** Kin Lane
-**Email:** kin@apievangelist.com
+- [Quadrant Api Plans Pricing](https://apis.io/plans/quadrant-api/quadrant-api-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Quadrant Api Rate Limits](https://apis.io/rate-limits/quadrant-api/quadrant-api-rate-limits/)
+
+#### FinOps (1)
+
+What the API costs to run, by operation.
+
+- [Quadrant Api Finops](https://apis.io/finops/quadrant-api/quadrant-api-finops/)
+
+## API Evangelist rating
+
+**Unrated** — no public website could be reached for this company, so there was almost nothing to measure and nothing a reader could check.
+
+This is not a score of zero. No rating is published for this company. If that is wrong because something public exists that we missed, say so on this repository or email [info@apievangelist.com](mailto:info@apievangelist.com) and it will be re-run — free, and no justification needed.
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Quadrant API: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/quadrant-api/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
